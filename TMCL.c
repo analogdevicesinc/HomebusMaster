@@ -56,14 +56,12 @@
 #define RS485_MODULE_ADDRESS 1
 #define RS485_HOST_ADDRESS   2
 
-const char VersionString[]="0050V100";
-
+extern const char VersionString[];
 static uint8_t TMCLCommandState;              //!< State of the interpreter
-TTMCLCommand ActualCommand;                 //!< TMCL command to be executed (with all parameters)
-TTMCLReply ActualReply;                     //!< Reply of last executed TMCL command
+static TTMCLCommand ActualCommand;            //!< TMCL command to be executed (with all parameters)
+static TTMCLReply ActualReply;                //!< Reply of last executed TMCL command
 static uint8_t TMCLReplyFormat;               //!< format of next reply (RF_NORMAL or RF_SPECIAL)
 static uint8_t SpecialReply[9];               //!< buffer for special replies
-static uint8_t ResetRequested;                //!< TRUE after executing the software reset command
 
 static void GetVersion(void);
 
@@ -222,9 +220,6 @@ void ProcessCommand(void)
   //Reset state (answer has been sent now)
   TMCLCommandState=TCS_IDLE;
   TMCLReplyFormat=RF_STANDARD;
-
-  //Generate a system reset if requested by the host
-  //if(ResetRequested) ResetCPU(TRUE);
 
   //**Try to get a new command**
   if(GetRS485Command(RS485Cmd))  //Get data from UART

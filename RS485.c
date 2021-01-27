@@ -54,14 +54,14 @@
 #define TMCL_COMMAND_LENGTH      9      //<! Length of a TMCL command: 9 bytes
 #define TMCL_RX_THRESHOLD        3      //<! Rx FIFO threshold for TMCL. TMCL_COMMAND_LENGTH must be dividable by TMCL_RX_THRESHOLD.
 
-const sys_cfg_uart_t sys_uart_cfg = {
+static const sys_cfg_uart_t sys_uart1_cfg = {
         MAP_A,
         UART_FLOW_DISABLE,
 };
 
-gpio_cfg_t RS485DirPin;                         //!< Pin for switching the data direction
-volatile uint8_t Command[TMCL_COMMAND_LENGTH];  //!< Buffer for one TMCL command
-volatile uint8_t CommandCount;                  //!< Counter for filling the command buffer
+static gpio_cfg_t RS485DirPin;                         //!< Pin for switching the data direction
+static volatile uint8_t Command[TMCL_COMMAND_LENGTH];  //!< Buffer for one TMCL command
+static volatile uint8_t CommandCount;                  //!< Counter for filling the command buffer
 
 /***************************************************************//**
    \fn UART1_IRQHandler
@@ -163,7 +163,7 @@ void InitRS485(uint32_t Baudrate)
   cfg.flow = UART_FLOW_CTRL_DIS;
   cfg.pol = UART_FLOW_POL_EN;
   cfg.baud = Baudrate;
-  UART_Init(MXC_UART1, &cfg, &sys_uart_cfg);
+  UART_Init(MXC_UART1, &cfg, &sys_uart1_cfg);
   MXC_UART1->ctrl|=(5<<16);  //Timeout: 5 Frames
 
 
