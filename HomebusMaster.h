@@ -52,7 +52,7 @@
 #define SW_VERSION_HIGH 1
 #define SW_VERSION_LOW  0
 #define SW_TYPE_HIGH 0x00
-#define SW_TYPE_LOW  0x18
+#define SW_TYPE_LOW  0x19
 
 #define N_O_MOTORS 1
 #endif

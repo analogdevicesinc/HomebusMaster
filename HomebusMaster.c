@@ -54,7 +54,7 @@
 #include "HomebusMaster.h"
 #include "Homebus.h"
 
-const char VersionString[]="0024V100";  //!< Version information for the TMCL-IDE
+const char VersionString[]="0025V100";  //!< Version information for the TMCL-IDE
 
 static gpio_cfg_t led_out;     //!< Pin for LED (P0.13)
 static uint32_t Delay;         //!< Delay for LED blinking
