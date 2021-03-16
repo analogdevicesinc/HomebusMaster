@@ -138,6 +138,7 @@ static void ExecuteActualCommand(void)
     case TMCL_SAP:
     case TMCL_GAP:
     case TMCL_GIO:
+    case TMCL_RFS:
       SendTMCLCommandHomebus();
       break;
 
